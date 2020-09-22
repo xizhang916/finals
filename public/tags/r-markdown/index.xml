@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R Markdown on A Hugo website</title>
+    <link>/tags/r-markdown/</link>
+    <description>Recent content in R Markdown on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/r-markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Education background obtained by an individual predicts how interested he is in the 2019 federal election</title>
+      <link>/2020/09/22/education-background-obtained-by-an-individual-predicts-how-interested-he-is-in-the-2019-federal-election/</link>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/09/22/education-background-obtained-by-an-individual-predicts-how-interested-he-is-in-the-2019-federal-election/</guid>
+      <description>Abstract The highest level of education an individual has completed may affect many things,including his interest level in the 2019 federal election.In this report,we use the 2019 CES dataset,which was created based on a non-probability survey takenfor 2019 federal election.By manipulating the data within the dataset,I have found that high level of education is associated with high level of interest in the election.Our findings have implications for understanding the potential audience for the election.</description>
+    </item>
+    
+  </channel>
+</rss>
