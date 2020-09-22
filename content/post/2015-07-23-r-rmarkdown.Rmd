@@ -122,16 +122,7 @@ The graph 2 is a boxplot and it has "Education level"on the X-axis and "interest
 If we put the two findings above together,we can conclude that the higher education background one has obtained,the greater interest he may show towards the federal election.
 
 
-## Additional table
 
-If we combine the additional table with the other two plots,we can find that:
-
-Education level              Median of interest level
-Completed secondary/ high school            7.0
-Completed technical, community college,etc  8.0
-Bachelor's Degree                           8.0
-
-These three groups are the top 3 largest groups in the survey.The medians tell us that fifty percent of participants obtaining "Completed secondary/ high school"rate their interest level above 7.Similarly,50% people within the other two groups rate above 8.This situation can explain why the distribution of interest levels is left skewed and most of the participants rate their interest levels above 7.
 
 
 # Weaknesses:
