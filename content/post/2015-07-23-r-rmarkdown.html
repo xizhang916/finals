@@ -1,3 +1,11 @@
+---
+title: "Education background obtained by an individual predicts how interested he is in the 2019 federal election"
+author: "Xi Zhang"
+date: 2020-09-22
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+---
+
 
 
 <div id="abstract" class="section level1">
@@ -15,79 +23,6 @@ findings have implications for understanding the potential audience for the elec
 <h1>Data</h1>
 <p>The dataset used in this paper is called CES2019-WEB.It is extracted from the 2019 Election Study located within the website (<a href="http://www.ces-eec.ca" class="uri">http://www.ces-eec.ca</a>").</p>
 <p>This dataset records participants’ responses to a non-probability survey conducted for 2019 federal election.To be more detailed,the data within the set demonstrates the participants’ personal information(gender,citizenship and education level,etc.),and their attitudes toward the election-related issues(parties of popular competitors and the new political policies regarding the election)</p>
-<pre><code>## Installing package into &#39;/home/rstudio-user/R/x86_64-pc-linux-gnu-library/4.0&#39;
-## (as &#39;lib&#39; is unspecified)
-## Skipping install of &#39;cesR&#39; from a github remote, the SHA1 (7c780beb) has not changed since last install.
-##   Use `force = TRUE` to force installation
-## TO CITE THIS SURVEY FILE:
-## 
-## - Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, &#39;2019 Canadian Election Study - Online Survey&#39;, https://doi.org/10.7910/DVN/DUS88V, Harvard Dataverse, V1
-## 
-## - Stephenson, Laura, Allison Harrel, Daniel Rubenson and Peter Loewen. Forthcoming. &#39;Measuring Preferences and Behaviour in the 2019 Canadian Election Study,&#39; Canadian Journal of Political Science.
-## 
-## LINK: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DUS88V
-## # A tibble: 37,822 x 620
-##    cps19_StartDate     cps19_EndDate       cps19_ResponseId cps19_consent
-##    &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;            &lt;fct&gt;        
-##  1 2019-09-13 08:09:44 2019-09-13 08:36:19 R_1OpYXEFGzHRUp… I consent to…
-##  2 2019-09-13 08:39:09 2019-09-13 08:57:06 R_2qdrL3J618rxY… I consent to…
-##  3 2019-09-13 10:01:19 2019-09-13 10:27:29 R_USWDAPcQEQiMm… I consent to…
-##  4 2019-09-13 10:05:37 2019-09-13 10:50:53 R_3IQaeDXy0tBzE… I consent to…
-##  5 2019-09-13 10:05:52 2019-09-13 10:32:53 R_27WeMQ1asip2c… I consent to…
-##  6 2019-09-13 10:10:20 2019-09-13 10:29:45 R_3LiGZcCWJEcWV… I consent to…
-##  7 2019-09-13 10:14:47 2019-09-13 10:32:32 R_1Iu8R1UlYzVMy… I consent to…
-##  8 2019-09-13 10:15:39 2019-09-13 10:30:59 R_2EcS26hqrcVYl… I consent to…
-##  9 2019-09-13 10:15:48 2019-09-13 10:37:45 R_3yrt44wqQ1d4V… I consent to…
-## 10 2019-09-13 10:16:08 2019-09-13 10:40:14 R_10OBmXJyvn8fe… I consent to…
-## # … with 37,812 more rows, and 616 more variables: cps19_citizenship &lt;fct&gt;,
-## #   cps19_yob &lt;fct&gt;, cps19_yob_2001_age &lt;fct&gt;, cps19_gender &lt;fct&gt;,
-## #   cps19_province &lt;fct&gt;, cps19_education &lt;fct&gt;, cps19_demsat &lt;fct&gt;,
-## #   cps19_imp_iss &lt;chr&gt;, cps19_imp_iss_party &lt;fct&gt;,
-## #   cps19_imp_iss_party_7_TEXT &lt;chr&gt;, cps19_imp_loc_iss &lt;chr&gt;,
-## #   cps19_imp_loc_iss_p &lt;fct&gt;, cps19_imp_loc_iss_p_7_TEXT &lt;chr&gt;,
-## #   cps19_interest_gen_1 &lt;dbl&gt;, cps19_interest_elxn_1 &lt;dbl&gt;,
-## #   cps19_v_likely &lt;fct&gt;, cps19_v_likely_pr &lt;fct&gt;, cps19_votechoice &lt;fct&gt;,
-## #   cps19_votechoice_7_TEXT &lt;chr&gt;, cps19_votechoice_pr &lt;fct&gt;,
-## #   cps19_votechoice_pr_7_TEXT &lt;chr&gt;, cps19_vote_unlikely &lt;fct&gt;,
-## #   cps19_vote_unlikely_7_TEXT &lt;chr&gt;, cps19_vote_unlike_pr &lt;fct&gt;,
-## #   cps19_vote_unlike_pr_7_TEXT &lt;chr&gt;, cps19_v_advance &lt;fct&gt;,
-## #   cps19_v_advance_7_TEXT &lt;chr&gt;, cps19_vote_lean &lt;fct&gt;,
-## #   cps19_vote_lean_7_TEXT &lt;chr&gt;, cps19_vote_lean_pr &lt;fct&gt;,
-## #   cps19_vote_lean_pr_7_TEXT &lt;chr&gt;, cps19_2nd_choice &lt;fct&gt;,
-## #   cps19_2nd_choice_7_TEXT &lt;chr&gt;, cps19_2nd_choice_pr &lt;fct&gt;,
-## #   cps19_2nd_choice_pr_7_TEXT &lt;chr&gt;, cps19_not_vote_for_1 &lt;fct&gt;,
-## #   cps19_not_vote_for_2 &lt;fct&gt;, cps19_not_vote_for_3 &lt;fct&gt;,
-## #   cps19_not_vote_for_4 &lt;fct&gt;, cps19_not_vote_for_5 &lt;fct&gt;,
-## #   cps19_not_vote_for_6 &lt;fct&gt;, cps19_not_vote_for_7 &lt;fct&gt;,
-## #   cps19_not_vote_for_8 &lt;fct&gt;, cps19_not_vote_for_9 &lt;fct&gt;,
-## #   cps19_not_vote_for_7_TEXT &lt;chr&gt;, cps19_fed_gov_sat &lt;fct&gt;,
-## #   cps19_party_rating_23 &lt;dbl&gt;, cps19_party_rating_24 &lt;dbl&gt;,
-## #   cps19_party_rating_25 &lt;dbl&gt;, cps19_party_rating_26 &lt;dbl&gt;,
-## #   cps19_party_rating_27 &lt;dbl&gt;, cps19_party_rating_28 &lt;dbl&gt;,
-## #   cps19_lead_rating_23 &lt;dbl&gt;, cps19_lead_rating_24 &lt;dbl&gt;,
-## #   cps19_lead_rating_25 &lt;dbl&gt;, cps19_lead_rating_26 &lt;dbl&gt;,
-## #   cps19_lead_rating_27 &lt;dbl&gt;, cps19_lead_rating_28 &lt;dbl&gt;,
-## #   cps19_cand_rating_23 &lt;dbl&gt;, cps19_cand_rating_24 &lt;dbl&gt;,
-## #   cps19_cand_rating_25 &lt;dbl&gt;, cps19_cand_rating_26 &lt;dbl&gt;,
-## #   cps19_cand_rating_27 &lt;dbl&gt;, cps19_cand_rating_28 &lt;dbl&gt;,
-## #   cps19_lr_scale_bef_1 &lt;dbl&gt;, cps19_lr_parties_1 &lt;dbl&gt;,
-## #   cps19_lr_parties_2 &lt;dbl&gt;, cps19_lr_parties_3 &lt;dbl&gt;,
-## #   cps19_lr_parties_4 &lt;dbl&gt;, cps19_lr_parties_5 &lt;dbl&gt;,
-## #   cps19_lr_parties_6 &lt;dbl&gt;, cps19_lr_scale_aft_1 &lt;dbl&gt;,
-## #   cps19_lead_int_113 &lt;fct&gt;, cps19_lead_int_114 &lt;fct&gt;,
-## #   cps19_lead_int_115 &lt;fct&gt;, cps19_lead_int_116 &lt;fct&gt;,
-## #   cps19_lead_int_117 &lt;fct&gt;, cps19_lead_int_118 &lt;fct&gt;,
-## #   cps19_lead_int_119 &lt;fct&gt;, cps19_lead_int_120 &lt;fct&gt;,
-## #   cps19_lead_strong_113 &lt;fct&gt;, cps19_lead_strong_114 &lt;fct&gt;,
-## #   cps19_lead_strong_115 &lt;fct&gt;, cps19_lead_strong_116 &lt;fct&gt;,
-## #   cps19_lead_strong_117 &lt;fct&gt;, cps19_lead_strong_118 &lt;fct&gt;,
-## #   cps19_lead_strong_119 &lt;fct&gt;, cps19_lead_strong_120 &lt;fct&gt;,
-## #   cps19_lead_trust_113 &lt;fct&gt;, cps19_lead_trust_114 &lt;fct&gt;,
-## #   cps19_lead_trust_115 &lt;fct&gt;, cps19_lead_trust_116 &lt;fct&gt;,
-## #   cps19_lead_trust_117 &lt;fct&gt;, cps19_lead_trust_118 &lt;fct&gt;,
-## #   cps19_lead_trust_119 &lt;fct&gt;, cps19_lead_trust_120 &lt;fct&gt;,
-## #   cps19_lead_cares_113 &lt;fct&gt;, cps19_lead_cares_114 &lt;fct&gt;,
-## #   cps19_lead_cares_115 &lt;fct&gt;, cps19_lead_cares_116 &lt;fct&gt;, …</code></pre>
 <p>Here is the preview of the dataset called ces2019_web.We see that it contains 620 variables in total.A large fraction of them are categorical and a small part are numerical.</p>
 <div id="summary-statistics" class="section level2">
 <h2>Summary Statistics</h2>
@@ -105,9 +40,12 @@ findings have implications for understanding the potential audience for the elec
 9.Bachelor’s degree
 10.Master’s degree
 11.Profession/doctorate degree</p>
+</div>
+</div>
+<div id="graphs" class="section level1">
+<h1>Graphs</h1>
 <p>On the X-axis,the education level is increasing from left to right(From “No Schooling” to “professional/doctorate degree”).The specific order is same as the order in additional table stated below.</p>
 <p>Additional Table</p>
-</div>
 </div>
 <div id="discussion" class="section level1">
 <h1>Discussion</h1>
