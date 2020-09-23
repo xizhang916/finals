@@ -66,10 +66,10 @@ Specification:Since the participants are sorted into groups by the highest educa
 # Graphs
 
 
-```{r echo=FALSE , warning=FALSE}
+```{r echo=FALSE, warning=FALSE}
 ces2019_web %>%
   ggplot(aes(x=cps19_interest_elxn_1))+
-  geom_histogram(bins = 20)+
+  geom_histogram(bins = 15)+
 labs(x="interest level",
        y="Number",
        title="Distribution of interest level in 2019 CES(Gragh 1)",
