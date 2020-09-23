@@ -7,7 +7,7 @@ tags: ["R Markdown", "plot", "regression"]
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE, include = FALSE)
+knitr::opts_chunk$set(include = FALSE)
 install.packages("tidyverse")
 library(tidyverse)
 install.packages("dplyr")
