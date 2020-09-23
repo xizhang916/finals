@@ -1,10 +1,8 @@
 ---
-title:" Education background obtained by an individual predicts how interested he is in the 2019 federal election"
+title: "Education background obtained by an individual predicts how interested he is in the 2019 federal election."
+date: "2020-09-22"
 author: "Xi Zhang"
-date: '2020-09-22'
-
-tags: {"R Markdown","plot","regression"}
-categories: {"R"} 
+tags: {"R"}
 ---
 
 ```{r include=FALSE}
